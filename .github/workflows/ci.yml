@@ -30,7 +30,7 @@ jobs:
     - name: Run unit tests
       run: |
         source venv/bin/activate
-        pytest tests/test_operations/
+        pytest tests/test_operations.py/
 
     - name: Run integration tests
       run: |
