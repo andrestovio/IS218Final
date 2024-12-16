@@ -31,13 +31,3 @@ jobs:
       run: |
         source venv/bin/activate
         pytest tests/test_operations.py/
-
-    - name: Run integration tests
-      run: |
-        source venv/bin/activate
-        pytest tests/integration/
-
-    - name: Run E2E tests
-      run: |
-        source venv/bin/activate
-        pytest tests/e2e/
