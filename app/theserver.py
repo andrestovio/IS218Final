@@ -5,13 +5,13 @@ from app.operations import addition, subtraction, multiplication, division
 
 app = FastAPI()
 
-# Serve static files (CSS/JS) from 'site' directory
-app.mount("/site", StaticFiles(directory="site"), name="site")
+# Serve static files (CSS/JS) from 'static' directory
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 @app.get("/", response_class=HTMLResponse)
 async def get_index():
     """Serve the frontend calculator HTML."""
-    with open("site/index.html") as file:
+    with open("static/index.html") as file:
         return HTMLResponse(content=file.read(), status_code=200)
 
 @app.post("/")
