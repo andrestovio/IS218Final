@@ -1,9 +1,40 @@
-version: "3.9"
 services:
+  # FastAPI Calculator Application
   calculator:
     build: .
     ports:
       - "8000:8000"
     volumes:
       - .:/app
+    environment:
+      - DATABASE_URL=postgresql://postgres:password@db:5432/calculator_db
     restart: always
+    depends_on:
+      - db
+
+  # PostgreSQL Database
+  db:
+    image: postgres:14
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: calculator_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # pgAdmin Tool
+  pgadmin:
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com   # Default login email
+      PGADMIN_DEFAULT_PASSWORD: password       # Default password
+    ports:
+      - "5050:80"  # Map pgAdmin to localhost:5050
+    depends_on:
+      - db
+    restart: always  # Restart pgAdmin if it stops unexpectedly
+
+volumes:
+  db_data:   # Persistent volume for PostgreSQL data
