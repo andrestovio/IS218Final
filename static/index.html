@@ -55,9 +55,29 @@
             font-weight: bold;
             color: #333;
         }
+        #clock-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#clock {
+    display: block;
+    margin: 0 auto;
+    border: 2px solid #333;
+    border-radius: 50%;
+    background-color: #f9f9f9;
+}
+
+
     </style>
 </head>
 <body>
+    <div id="clock-container">
+        <canvas id="clock" width="200" height="200"></canvas>
+    </div>
+    
+    <script src="/static/clock.js"></script>
+
     <div class="calculator">
         <h1>Calculator</h1>
         <input type="number" id="num1" placeholder="Enter first number">
